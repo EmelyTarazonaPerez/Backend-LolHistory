@@ -1,5 +1,13 @@
 package LolHistory.bussine.dto;
 
-public interface InvocadorDTO {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
+public class InvocadorDTO {
+         String puuid;
+         String gameName;
+         String tagLine;
 
 }
