@@ -1,4 +1,4 @@
 package LolHistory.bussine.service;
 
-public class userService {
+public interface IUserService {
 }
