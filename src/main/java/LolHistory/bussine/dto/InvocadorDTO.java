@@ -2,11 +2,9 @@ package LolHistory.bussine.dto;
 
 
 public class InvocadorDTO {
-
         private  String puuid;
         private String gameName;
         private String tagLine;
-
 
     public void setGameName(String gameName) {
         this.gameName = gameName;
@@ -20,9 +18,7 @@ public class InvocadorDTO {
         this.tagLine = tagLine;
     }
 
-    public String getGameName() {
-        return gameName;
-    }
+    public String getGameName() { return gameName; }
 
     public String getTagLine() {
         return tagLine;

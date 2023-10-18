@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService implements IUserService {
-
-
     @Autowired
     private  ConsumerUserService consumerUserService;
 
@@ -21,5 +19,10 @@ public class UserService implements IUserService {
     public ResponseEntity<InvocadorDTO> getSummoner(String name, String region) {
         consumerRiotService.setPUUID(consumerUserService.getSummoner(name, region).getBody().getPuuid());
         return consumerUserService.getSummoner(name, region);
+    }
+
+    @Override
+    public ResponseEntity<Object> getChampionMastery(String puuid) {
+        return consumerUserService.getChampionMastery(puuid);
     }
 }

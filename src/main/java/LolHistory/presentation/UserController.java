@@ -12,7 +12,6 @@ import java.util.Map;
 
 @RestController
 public class UserController {
-
     @Autowired
     private UserService userService;
 
@@ -23,6 +22,8 @@ public class UserController {
         return new ResponseEntity<InvocadorDTO>( userService.getSummoner(gameName, tagLine).getBody(), HttpStatus.OK);
     }
 
-
-
+    @GetMapping("/{puuid}")
+    public ResponseEntity<Object> getChampionMastery(@PathVariable String puuid){
+        return new ResponseEntity<Object>(userService.getChampionMastery(puuid).getBody(), HttpStatus.OK);
+    }
 }

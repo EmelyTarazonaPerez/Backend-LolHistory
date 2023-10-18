@@ -10,24 +10,23 @@ import javax.swing.text.html.parser.Entity;
 
 @Service
 public class ConsumerUserService  extends ConsumerRiotService {
-
-    @Autowired
-    private RestTemplate restTemplate;
-
     public ResponseEntity<InvocadorDTO> getSummoner(String gameName, String tagLine){
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("X-Riot-Token", super.API_KEY);
-
-        ResponseEntity<InvocadorDTO> response = restTemplate.exchange(
+        ResponseEntity<InvocadorDTO> response = super.sendRiotRequest(
                 "https://americas.api.riotgames.com/riot/account/v1/accounts/by-riot-id/" + gameName + "/" + tagLine,
                 HttpMethod.GET,
-                new HttpEntity<>(headers),
-                InvocadorDTO.class);
+                InvocadorDTO.class
+        );
 
         return new ResponseEntity<InvocadorDTO>(response.getBody(), HttpStatus.OK);
     }
 
+    public ResponseEntity<Object> getChampionMastery(String puuid){
+        ResponseEntity<Object> response = super.sendRiotRequest(
+                "https://la1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-puuid/" + puuid,
+                HttpMethod.GET,
+                Object.class
+        );
 
-
-
+        return new ResponseEntity<Object>(response.getBody(), HttpStatus.OK);
+    }
 }
