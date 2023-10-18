@@ -1,16 +1,28 @@
 package LolHistory.bussine.service;
 
+import LolHistory.bussine.dto.InvocadorDTO;
+import LolHistory.bussine.externalServices.ConsumerRiotService;
 import LolHistory.bussine.externalServices.ConsumerUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
-public class UserService {
+@Service
+public class UserService implements IUserService {
+    @Autowired
+    private  ConsumerUserService consumerUserService;
 
     @Autowired
-    private ConsumerUserService consumerUserService;
+    private ConsumerRiotService consumerRiotService;
 
-    @Autowired
-    private RestTemplate restTemplate;
+    @Override
+    public ResponseEntity<InvocadorDTO> getSummoner(String name, String region) {
+        consumerRiotService.setPUUID(consumerUserService.getSummoner(name, region).getBody().getPuuid());
+        return consumerUserService.getSummoner(name, region);
+    }
 
-
+    @Override
+    public ResponseEntity<Object> getChampionMastery(String puuid) {
+        return consumerUserService.getChampionMastery(puuid);
+    }
 }
