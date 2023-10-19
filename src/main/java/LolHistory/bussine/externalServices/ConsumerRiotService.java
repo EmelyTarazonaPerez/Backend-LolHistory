@@ -1,6 +1,6 @@
 package LolHistory.bussine.externalServices;
 
-import LolHistory.bussine.dto.InvocadorDTO;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,9 +10,10 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
 
 @Configuration
 @Service
@@ -22,14 +23,7 @@ public abstract class ConsumerRiotService {
     private String API_KEY;
     @Autowired
     private RestTemplate restTemplate;
-    private String PUUID;
 
-    public void setPUUID(String PUUID) {
-        this.PUUID = PUUID;
-    }
-    public String getPUUID() {
-        return PUUID;
-    }
 
     public HttpHeaders getHeader() {
         HttpHeaders headers = new HttpHeaders();
@@ -88,4 +82,5 @@ public abstract class ConsumerRiotService {
             typeDto
         );
     }
+
 }
