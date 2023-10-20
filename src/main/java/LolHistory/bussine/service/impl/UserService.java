@@ -1,7 +1,6 @@
 package LolHistory.bussine.service.impl;
 
 import LolHistory.bussine.externalServices.model.Invocador;
-import LolHistory.bussine.externalServices.ConsumerRiotService;
 import LolHistory.bussine.externalServices.ConsumerUserService;
 import LolHistory.bussine.externalServices.model.Match;
 import LolHistory.bussine.service.IUserService;
@@ -23,8 +22,11 @@ public class UserService implements IUserService {
         return consumerUserService.getChampionMastery(puuid);
     }
 
-
     public ResponseEntity<Match> getInfoGameByMatch(){
         return consumerUserService.getInfoGameByMatch();
+    }
+
+    public ResponseEntity<Match[]> getLastTwentyGames(){
+        return consumerUserService.getLastTwentyGames();
     }
 }

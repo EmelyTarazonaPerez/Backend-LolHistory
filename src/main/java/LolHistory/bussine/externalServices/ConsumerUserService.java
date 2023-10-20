@@ -4,8 +4,7 @@ import LolHistory.bussine.externalServices.model.Invocador;
 import LolHistory.bussine.externalServices.model.Match;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
+import org.springframework.util.StringUtils;
 
 @Service
 public class ConsumerUserService  extends ConsumerRiotService {
@@ -45,27 +44,43 @@ public class ConsumerUserService  extends ConsumerRiotService {
     /**
      * @return The code of each game is returned
      */
-    public ResponseEntity<String> getMatchesByPuuid(){
-        ResponseEntity<String> response = super.sendRiotRequest(
+    public ResponseEntity<String[]> getMatchesByPuuid(){
+        System.out.println("puuid: " + PUUID);
+        ResponseEntity<String[]> response = super.sendRiotRequest(
                 "https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/"+ PUUID +"/ids?start=0&count=20",
                 HttpMethod.GET,
-                String.class);
+                String[].class);
 
-        return new ResponseEntity<String>(response.getBody(), HttpStatus.OK);
+
+
+        return new ResponseEntity<String[]>(response.getBody(), HttpStatus.OK);
     }
 
     public ResponseEntity<Match> getInfoGameByMatch (){
-
-        System.out.println(getMatchesByPuuid().getBody().length());
 
         ResponseEntity<Match> response = super.sendRiotRequest(
                 "https://americas.api.riotgames.com/lol/match/v5/matches/LA1_1446766436",
                 HttpMethod.GET,
                 Match.class);
-
         Match match = response.getBody();
-
         return new ResponseEntity<Match>(response.getBody(), HttpStatus.OK);
+    }
+
+    public ResponseEntity<Match[]> getLastTwentyGames (){
+
+        String[] matches = getMatchesByPuuid().getBody();
+        Match[] arrayMatches = new  Match[matches.length];
+
+        for (int i = 0; i < matches.length; i++) {
+            ResponseEntity<Match>  response = super.sendRiotRequest(
+                    "https://americas.api.riotgames.com/lol/match/v5/matches/" + getMatchesByPuuid().getBody()[i],
+                    HttpMethod.GET,
+                    Match.class);
+
+            arrayMatches[i] = response.getBody();
+        }
+
+        return new ResponseEntity<Match[]>(arrayMatches, HttpStatus.OK);
     }
 
 }

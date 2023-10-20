@@ -28,8 +28,14 @@ public class UserController {
         return new ResponseEntity<Object>(userService.getChampionMastery(puuid).getBody(), HttpStatus.OK);
     }
 
+
     @GetMapping("/info")
     public ResponseEntity<Match> getInfoGame(){
         return new ResponseEntity<Match>(userService.getInfoGameByMatch().getBody(), HttpStatus.OK);
+    }
+
+    @GetMapping("/las-twenty-ty-games")
+    public ResponseEntity<Match[]> getLastTwentyGames(){
+        return new ResponseEntity<Match[]>(userService.getLastTwentyGames().getBody(), HttpStatus.OK);
     }
 }
