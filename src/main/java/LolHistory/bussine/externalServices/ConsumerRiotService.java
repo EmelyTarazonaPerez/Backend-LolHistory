@@ -1,6 +1,6 @@
 package LolHistory.bussine.externalServices;
 
-import LolHistory.bussine.dto.InvocadorDTO;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,9 +10,10 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
 
 @Configuration
 @Service
@@ -22,23 +23,17 @@ public abstract class ConsumerRiotService {
     private String API_KEY;
     @Autowired
     private RestTemplate restTemplate;
-    private String PUUID;
 
-    public void setPUUID(String PUUID) {
-        this.PUUID = PUUID;
-    }
-    public String getPUUID() {
-        return PUUID;
-    }
 
-    public HttpHeaders getHeader() {
+
+    protected HttpHeaders getHeader() {
         HttpHeaders headers = new HttpHeaders();
         headers.add("X-Riot-Token", API_KEY);
 
         return headers;
     }
 
-    public <T> ResponseEntity<T> sendRiotRequest(String url, HttpMethod method, Class<T> typeDto) {
+    protected <T> ResponseEntity<T> sendRiotRequest(String url, HttpMethod method, Class<T> typeDto) {
         return restTemplate.exchange(
             url,
             method,
@@ -47,7 +42,7 @@ public abstract class ConsumerRiotService {
         );
     }
 
-    public <T> ResponseEntity<T> sendRiotRequest(
+    protected <T> ResponseEntity<T> sendRiotRequest(
             String url,
             HttpMethod method,
             MultiValueMap<String, String> body,
@@ -63,7 +58,7 @@ public abstract class ConsumerRiotService {
         );
     }
 
-    public <T> ResponseEntity<T> sendRiotRequest(String url, HttpMethod method, HttpHeaders headers, Class<T> typeDto) {
+    protected <T> ResponseEntity<T> sendRiotRequest(String url, HttpMethod method, HttpHeaders headers, Class<T> typeDto) {
         return restTemplate.exchange(
             url,
             method,
@@ -72,7 +67,7 @@ public abstract class ConsumerRiotService {
         );
     }
 
-    public <T> ResponseEntity<T> sendRiotRequest(
+    protected <T> ResponseEntity<T> sendRiotRequest(
             String url,
             HttpMethod method,
             MultiValueMap<String, String> body,
@@ -88,4 +83,5 @@ public abstract class ConsumerRiotService {
             typeDto
         );
     }
+
 }

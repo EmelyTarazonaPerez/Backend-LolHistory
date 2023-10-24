@@ -1,23 +1,22 @@
 package LolHistory.bussine.externalServices;
 
-import LolHistory.bussine.dto.InvocadorDTO;
-import org.springframework.beans.factory.annotation.Autowired;
+import LolHistory.bussine.externalServices.model.Invocador;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-
-import javax.swing.text.html.parser.Entity;
 
 @Service
 public class ConsumerUserService  extends ConsumerRiotService {
-    public ResponseEntity<InvocadorDTO> getSummoner(String gameName, String tagLine){
-        ResponseEntity<InvocadorDTO> response = super.sendRiotRequest(
+    private String PUUID;
+
+    public ResponseEntity<Invocador> getSummoner(String gameName, String tagLine){
+        ResponseEntity<Invocador> response = super.sendRiotRequest(
                 "https://americas.api.riotgames.com/riot/account/v1/accounts/by-riot-id/" + gameName + "/" + tagLine,
                 HttpMethod.GET,
-                InvocadorDTO.class
+                Invocador.class
         );
-
-        return new ResponseEntity<InvocadorDTO>(response.getBody(), HttpStatus.OK);
+        Invocador invocador = response.getBody();
+        PUUID = invocador != null ? invocador.getPuuid() : null;
+        return new ResponseEntity<Invocador>(invocador, HttpStatus.OK);
     }
 
     public ResponseEntity<Object> getChampionMastery(String puuid){
@@ -28,5 +27,8 @@ public class ConsumerUserService  extends ConsumerRiotService {
         );
 
         return new ResponseEntity<Object>(response.getBody(), HttpStatus.OK);
+    }
+    public String getPUUID() {
+        return PUUID;
     }
 }
