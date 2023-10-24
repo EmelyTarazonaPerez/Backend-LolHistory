@@ -1,6 +1,7 @@
 package LolHistory.presentation;
 import LolHistory.bussine.externalServices.model.Invocador;
 import LolHistory.bussine.externalServices.model.Match;
+import LolHistory.bussine.externalServices.model.Participant;
 import LolHistory.bussine.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
@@ -8,7 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 
 @RestController
@@ -29,13 +32,5 @@ public class UserController {
     }
 
 
-    @GetMapping("/info")
-    public ResponseEntity<Match> getInfoGame(){
-        return new ResponseEntity<Match>(userService.getInfoGameByMatch().getBody(), HttpStatus.OK);
-    }
 
-    @GetMapping("/las-twenty-ty-games")
-    public ResponseEntity<Match[]> getLastTwentyGames(){
-        return new ResponseEntity<Match[]>(userService.getLastTwentyGames().getBody(), HttpStatus.OK);
-    }
 }

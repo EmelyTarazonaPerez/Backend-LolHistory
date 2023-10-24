@@ -8,13 +8,14 @@ public class Info {
     private long gameStartTimestamp;
     private List<Participant> participants;
 
+    public List<Participant> getParticipants() {
+        return participants;
+    }
+
     public void setGameStartTimestamp(long gameStartTimestamp) {
         this.gameStartTimestamp = gameStartTimestamp;
     }
 
-    public List<Participant> getParticipants() {
-        return participants;
-    }
 
     public void setParticipants(List<Participant> participants) {
         this.participants = participants;

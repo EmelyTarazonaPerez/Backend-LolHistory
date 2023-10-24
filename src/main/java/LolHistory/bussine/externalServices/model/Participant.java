@@ -1,6 +1,7 @@
 package LolHistory.bussine.externalServices.model;
 
 import lombok.Data;
+import org.apache.el.stream.Stream;
 
 @Data
 public class Participant {
@@ -12,6 +13,10 @@ public class Participant {
     private int kills;
     private String puuid;
     private String summonerName;
+    private int teamId;
+    private int totalDamageDealtToChampions;
+    private boolean win;
+
     public int getAssists() {
         return assists;
     }
@@ -92,9 +97,6 @@ public class Participant {
         this.win = win;
     }
 
-    private int teamId;
-    private int totalDamageDealtToChampions;
-    private boolean win;
 
 
 }

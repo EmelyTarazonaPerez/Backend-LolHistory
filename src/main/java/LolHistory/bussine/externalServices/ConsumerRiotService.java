@@ -25,14 +25,15 @@ public abstract class ConsumerRiotService {
     private RestTemplate restTemplate;
 
 
-    public HttpHeaders getHeader() {
+
+    protected HttpHeaders getHeader() {
         HttpHeaders headers = new HttpHeaders();
         headers.add("X-Riot-Token", API_KEY);
 
         return headers;
     }
 
-    public <T> ResponseEntity<T> sendRiotRequest(String url, HttpMethod method, Class<T> typeDto) {
+    protected <T> ResponseEntity<T> sendRiotRequest(String url, HttpMethod method, Class<T> typeDto) {
         return restTemplate.exchange(
             url,
             method,
@@ -41,7 +42,7 @@ public abstract class ConsumerRiotService {
         );
     }
 
-    public <T> ResponseEntity<T> sendRiotRequest(
+    protected <T> ResponseEntity<T> sendRiotRequest(
             String url,
             HttpMethod method,
             MultiValueMap<String, String> body,
@@ -57,7 +58,7 @@ public abstract class ConsumerRiotService {
         );
     }
 
-    public <T> ResponseEntity<T> sendRiotRequest(String url, HttpMethod method, HttpHeaders headers, Class<T> typeDto) {
+    protected <T> ResponseEntity<T> sendRiotRequest(String url, HttpMethod method, HttpHeaders headers, Class<T> typeDto) {
         return restTemplate.exchange(
             url,
             method,
@@ -66,7 +67,7 @@ public abstract class ConsumerRiotService {
         );
     }
 
-    public <T> ResponseEntity<T> sendRiotRequest(
+    protected <T> ResponseEntity<T> sendRiotRequest(
             String url,
             HttpMethod method,
             MultiValueMap<String, String> body,
