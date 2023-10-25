@@ -3,6 +3,9 @@ package LolHistory.bussine.externalServices.model;
 import lombok.Data;
 import org.apache.el.stream.Stream;
 
+import java.util.Date;
+import java.util.List;
+
 @Data
 public class Participant {
 
@@ -16,6 +19,22 @@ public class Participant {
     private int teamId;
     private int totalDamageDealtToChampions;
     private boolean win;
+    private Date date;
+    private String gameMode;
+    public Date getDate() {
+        return date;
+    }
+    public void setDate(Date date) {
+        this.date = date;
+    }
+    public String getGameMode() {
+        return gameMode;
+    }
+
+    public void setGameMode(String gameMode) {
+        this.gameMode = gameMode;
+    }
+
 
     public int getAssists() {
         return assists;

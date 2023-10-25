@@ -1,16 +1,15 @@
 package LolHistory.bussine.externalServices;
 
+import LolHistory.bussine.externalServices.model.InfoByParticipant;
 import LolHistory.bussine.externalServices.model.Match;
 import LolHistory.bussine.externalServices.model.Participant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.sql.Timestamp;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -19,7 +18,6 @@ public class ConsumerGameHistory extends ConsumerRiotService  {
     @Autowired
     ConsumerUserService consumerUserService;
     private String[] getMatchesByPlayer(){
-        System.out.println(consumerUserService.getPUUID());
         ResponseEntity<String[]> response = super.sendRiotRequest(
                 "https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/"+ consumerUserService.getPUUID() +"/ids?start=0&count=5",
                 HttpMethod.GET,
@@ -27,27 +25,44 @@ public class ConsumerGameHistory extends ConsumerRiotService  {
         return response.getBody();
     }
 
-    public Match[] getAllStatics(){
-        String[] matchesID = getMatchesByPlayer();
-        Match[] arrayMatches = new  Match[matchesID.length];
-        for (int i = 0; i < matchesID.length; i++) {
-            ResponseEntity<Match>  response = super.sendRiotRequest(
-                    "https://americas.api.riotgames.com/lol/match/v5/matches/" + matchesID[i],
+    private List<Match> loopResponse ( ) {
+        String[] list = getMatchesByPlayer();
+        List<Match> returnList = new ArrayList<>();
+        for (String string : list) {
+            ResponseEntity<Match> response = super.sendRiotRequest(
+                    "https://americas.api.riotgames.com/lol/match/v5/matches/" + string,
                     HttpMethod.GET,
                     Match.class);
-
-            arrayMatches[i] = response.getBody();
+            returnList.add(response.getBody());
         }
-        return arrayMatches;
+        return returnList;
     }
-    public Stream<List<Participant>> getStatisticsByPlayer(){
-        Match[] dataHistoryGame = getAllStatics();
+
+    public List<Match> getAllStats(){;
+        return loopResponse();
+    }
+
+   /* public List<Participant> getListStatsByPlayer(){
+        List<Match> dataHistoryGame = getAllStats();
+
         assert dataHistoryGame != null;
-        return Arrays.stream(dataHistoryGame).map(n -> n.getInfo()
-                .getParticipants()
-                .stream()
-                .filter(x -> Objects.equals(x.getPuuid(), consumerUserService.getPUUID()))
-                .collect(Collectors.toList()));
+
+        return dataHistoryGame.stream().map(this::statsPlayer).collect(Collectors.toList());
     }
+
+    private Participant statsPlayer (Match n) {
+        List<Participant> participants = n.getInfo().getParticipants();
+        Participant participant = null;
+
+        for (Participant current : participants) {
+            if (current.getPuuid().equals(consumerUserService.getPUUID())) {
+                participant = current;
+                participant.setDate(timeStampToDate(n));
+                break;
+            }
+        }
+        return participant;
+    }*/
+
 
 }

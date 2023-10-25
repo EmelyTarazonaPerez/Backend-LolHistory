@@ -21,14 +21,13 @@ public class GameHistoryController {
     @Autowired
     GameHistoryService gameHistoryService;
     @GetMapping("/moreInfoGameHistory")
-    public ResponseEntity<Match[]> getAllGameStatistics(){
-        System.out.println(Arrays.toString(gameHistoryService.getAllGameStatistics()));
-        return new ResponseEntity<Match[]>(gameHistoryService.getAllGameStatistics(), HttpStatus.OK);
+    public ResponseEntity<List<Match>> getAllGameStatistics(){
+        return new ResponseEntity<>(gameHistoryService.getAllGameStatistics(), HttpStatus.OK);
     }
 
     @GetMapping("/gameHistory/player")
-    public ResponseEntity<Stream<List<Participant>>> getGameHistory(){
-        return new ResponseEntity<>(gameHistoryService.getStatisticsByPlayer(), HttpStatus.OK);
+    public ResponseEntity<List<Participant>> getStatsByPlayer(){
+        return new ResponseEntity<>(gameHistoryService.getListStatsByPlayer(), HttpStatus.OK);
     }
 
 }
