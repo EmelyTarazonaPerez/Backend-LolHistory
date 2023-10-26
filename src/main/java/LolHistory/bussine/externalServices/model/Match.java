@@ -5,11 +5,11 @@ import lombok.Data;
 @Data
 public class Match {
 
-    private AllInfo info;
-    public AllInfo getInfo() {
+    private Info info;
+    public Info getInfo() {
         return info;
     }
-    public void setInfo(AllInfo info) {
+    public void setInfo(Info info) {
         this.info = info;
     }
 }
