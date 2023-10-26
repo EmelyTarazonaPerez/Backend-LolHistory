@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,6 +29,11 @@ public class GameHistoryController {
     @GetMapping("/gameHistory/player")
     public ResponseEntity<List<Participant>> getStatsByPlayer(){
         return new ResponseEntity<>(gameHistoryService.getListStatsByPlayer(), HttpStatus.OK);
+    }
+
+    @GetMapping("/getInfoGame/{StartTimestamp}")
+    public ResponseEntity<Match> getGameByTamp(@PathVariable long StartTimestamp ){
+        return new ResponseEntity<>(gameHistoryService.getGameByTamp(StartTimestamp), HttpStatus.OK);
     }
 
 }

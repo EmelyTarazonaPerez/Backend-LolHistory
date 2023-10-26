@@ -1,18 +1,22 @@
 package LolHistory.bussine.externalServices;
 
 import LolHistory.bussine.externalServices.model.Match;
+import LolHistory.bussine.service.impl.DataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 @Service
 public class ConsumerGameHistory extends ConsumerRiotService  {
     @Autowired
     ConsumerUserService consumerUserService;
+    @Autowired
+    DataService dataService;
     private String[] getMatchesByPlayer(){
         ResponseEntity<String[]> response = super.sendRiotRequest(
                 "https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/"+ consumerUserService.getPUUID() +"/ids?start=0&count=5",
@@ -38,5 +42,17 @@ public class ConsumerGameHistory extends ConsumerRiotService  {
         return loopResponse();
     }
 
-
+    public Match getGameByTamp(long StartTimestamp){
+        List<Match> listGames = loopResponse();
+        Match checkGame = null;
+        for ( Match current: listGames ) {
+            long Timestamp = current.getInfo().getGameStartTimestamp();
+            if(Timestamp == StartTimestamp){
+                System.out.println(current);
+                checkGame = current;
+                break;
+            }
+        }
+        return checkGame;
+    }
 }

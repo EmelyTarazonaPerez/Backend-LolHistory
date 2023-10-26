@@ -24,8 +24,11 @@ public class GameHistoryService {
     private DataService dataService;
 
     public List<Match> getAllGameStatistics (){
-
         return consumerGameHistory.getAllStats();
+    }
+
+    public Match getGameByTamp (long StartTimestamp){
+        return consumerGameHistory.getGameByTamp(StartTimestamp);
     }
 
     public List<Participant> getListStatsByPlayer(){
