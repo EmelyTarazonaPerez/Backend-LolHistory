@@ -4,7 +4,7 @@ import LolHistory.bussine.externalServices.ConsumerGameHistory;
 import LolHistory.bussine.externalServices.ConsumerUserService;
 import LolHistory.bussine.externalServices.model.Match;
 import LolHistory.bussine.externalServices.model.Participant;
-import LolHistory.bussine.externalServices.model.Summary;
+import LolHistory.bussine.externalServices.model.SummaryDamage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +28,7 @@ public class GameHistoryService {
         return consumerGameHistory.getGameByTamp(StartTimestamp);
     }
 
-    public List<Summary> getSummaryPlayers (long StartTimestamp) {
+    public List<SummaryDamage> getSummaryPlayers (long StartTimestamp) {
         return consumerGameHistory.getStacsPlayers(StartTimestamp);
     }
 

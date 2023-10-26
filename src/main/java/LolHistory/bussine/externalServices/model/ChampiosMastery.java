@@ -21,7 +21,6 @@ public class ChampiosMastery {
     public int getChampionId() {
         return championId;
     }
-
     public int getChampionLevel() {
         return championLevel;
     }

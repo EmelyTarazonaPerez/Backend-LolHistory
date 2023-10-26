@@ -3,11 +3,9 @@ package LolHistory.bussine.externalServices.model;
 import lombok.Data;
 import lombok.Getter;
 
-import java.util.List;
-
 @Data
 @Getter
-public class Summary {
+public class SummaryDamage {
     private String championPng;
     private int damage;
 
