@@ -2,6 +2,7 @@ package LolHistory.presentation;
 
 import LolHistory.bussine.externalServices.model.Match;
 import LolHistory.bussine.externalServices.model.Participant;
+import LolHistory.bussine.externalServices.model.Summary;
 import LolHistory.bussine.service.impl.GameHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,4 +37,8 @@ public class GameHistoryController {
         return new ResponseEntity<>(gameHistoryService.getGameByTamp(StartTimestamp), HttpStatus.OK);
     }
 
+    @GetMapping("/infoSummaryStatcPlayer/{StartTimestamp}")
+    public ResponseEntity<List<Summary>> getSummaryPlayers (@PathVariable long StartTimestamp ){
+        return new ResponseEntity<>(gameHistoryService.getSummaryPlayers(StartTimestamp), HttpStatus.OK);
+    }
 }
