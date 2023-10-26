@@ -2,7 +2,7 @@ package LolHistory.bussine.externalServices.model;
 
 import java.util.List;
 
-public class AllInfo {
+public class Info {
     private long gameEndTimestamp;
     private String gameMode;
     private long gameStartTimestamp;
