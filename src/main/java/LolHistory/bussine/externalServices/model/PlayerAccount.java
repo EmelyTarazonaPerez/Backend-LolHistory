@@ -4,14 +4,13 @@ import lombok.Data;
 
 @Data
 public class PlayerAccount {
+    private String id;
     private String puuid;
     private String name;
     private int profileIconId;
     private int summonerLevel;
     private String linkIcono;
-    public String getName() {
-        return name;
-    }
+    public String getName() {return name;}
     public void setName(String name) {
         this.name = name;
     }
@@ -33,12 +32,12 @@ public class PlayerAccount {
     public String getPuuid() {
         return puuid;
     }
-
     public String getLinkIcono() {
         return linkIcono;
     }
-
     public void setLinkIcono(String linkIcono) {
         this.linkIcono = linkIcono;
     }
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
 }
