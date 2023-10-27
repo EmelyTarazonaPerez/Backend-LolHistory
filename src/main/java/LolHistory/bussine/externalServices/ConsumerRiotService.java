@@ -23,8 +23,7 @@ public abstract class ConsumerRiotService {
     private String API_KEY;
     @Autowired
     private RestTemplate restTemplate;
-
-
+    protected final String linkIcon = "http://ddragon.leagueoflegends.com/cdn/13.21.1/img/profileicon/";
 
     protected HttpHeaders getHeader() {
         HttpHeaders headers = new HttpHeaders();

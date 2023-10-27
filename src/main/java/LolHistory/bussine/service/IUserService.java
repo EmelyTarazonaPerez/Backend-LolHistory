@@ -1,10 +1,9 @@
 package LolHistory.bussine.service;
 
-import LolHistory.bussine.externalServices.model.Invocador;
+import LolHistory.bussine.externalServices.model.PlayerAccount;
 import org.springframework.http.ResponseEntity;
 
 public interface IUserService {
-    public ResponseEntity<Invocador> getSummoner(String name, String region);
     public ResponseEntity<Object> getChampionMastery(String puuid);
 
 }
