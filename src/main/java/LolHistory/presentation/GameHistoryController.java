@@ -22,7 +22,6 @@ public class GameHistoryController {
     public ResponseEntity<List<Match>> getAllGameStatistics(){
         return new ResponseEntity<>(gameHistoryService.getAllGameStatistics(), HttpStatus.OK);
     }
-
     @GetMapping("/gameHistory/player")
     public ResponseEntity<List<Participant>> getStatsByPlayer(){
         return new ResponseEntity<>(gameHistoryService.getListStatsByPlayer(), HttpStatus.OK);
