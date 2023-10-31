@@ -1,7 +1,7 @@
 package LolHistory.bussine.service.impl;
 
 import LolHistory.bussine.externalServices.ConsumerGameHistory;
-import LolHistory.bussine.externalServices.ConsumerUserService;
+import LolHistory.bussine.externalServices.ConsumerUser;
 import LolHistory.bussine.externalServices.model.Match;
 import LolHistory.bussine.externalServices.model.Participant;
 import LolHistory.bussine.externalServices.model.SummaryDamage;
@@ -16,7 +16,7 @@ public class GameHistoryService {
     @Autowired
     private ConsumerGameHistory consumerGameHistory;
     @Autowired
-    private ConsumerUserService consumerUserService;
+    private ConsumerUser consumerUserService;
     @Autowired
     private DataService dataService;
 

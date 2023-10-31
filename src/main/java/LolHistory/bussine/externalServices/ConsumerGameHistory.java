@@ -13,9 +13,9 @@ import java.util.*;
 
 
 @Service
-public class ConsumerGameHistory extends ConsumerRiotService  {
+public class ConsumerGameHistory extends ConsumerRiot {
     @Autowired
-    ConsumerUserService consumerUserService;
+    ConsumerUser consumerUserService;
     @Autowired
     DataService dataService;
     private String[] getMatchesByPlayer(){

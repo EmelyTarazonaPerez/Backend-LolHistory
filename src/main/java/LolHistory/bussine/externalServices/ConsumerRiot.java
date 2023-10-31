@@ -1,6 +1,5 @@
 package LolHistory.bussine.externalServices;
 
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,18 +12,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
-
 @Configuration
 @Service
 @RequiredArgsConstructor
-public abstract class ConsumerRiotService {
+public abstract class ConsumerRiot {
     @Value("${api.key}")
     private String API_KEY;
     @Autowired
     private RestTemplate restTemplate;
-
-
+    protected final String linkIcon = "http://ddragon.leagueoflegends.com/cdn/13.21.1/img/profileicon/";
 
     protected HttpHeaders getHeader() {
         HttpHeaders headers = new HttpHeaders();
