@@ -72,7 +72,6 @@ public class ConsumerGameHistory extends ConsumerRiot {
 
     public List<Participant> getSummaryPlayerHistory(){
         List<Match> dataHistoryGame = getAllStats();
-        suma(dataHistoryGame);
         assert dataHistoryGame != null;
         return dataHistoryGame.stream().map(this::statsPlayer).collect(Collectors.toList());
     }
@@ -105,7 +104,18 @@ public class ConsumerGameHistory extends ConsumerRiot {
         return false;
     }
 
-    
+    public List<Integer> listEquipo () {
+
+        List<Participant> stactsPlayer = getSummaryPlayerHistory();
+        List<Integer> equipos =  new ArrayList<>();
+
+        for (Participant current: stactsPlayer ) {
+            equipos.add(current.getTeamId());
+        }
+
+        return equipos;
+
+    }
 
 
 }

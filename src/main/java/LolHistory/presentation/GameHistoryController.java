@@ -36,4 +36,9 @@ public class GameHistoryController {
     public ResponseEntity<List<SummaryDamage>> getSummaryPlayers (@PathVariable long StartTimestamp ){
         return new ResponseEntity<>(gameHistoryService.getSummaryPlayers(StartTimestamp), HttpStatus.OK);
     }
+
+    @GetMapping("/idequipo-del-jugador")
+    public ResponseEntity<List<Integer>> listEquipo () {
+        return new ResponseEntity<>(gameHistoryService.listEquipo(), HttpStatus.OK);
+    }
 }
