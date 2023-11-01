@@ -19,16 +19,16 @@ public class GameHistoryController {
     @Autowired
     GameHistoryService gameHistoryService;
     @GetMapping("/moreInfoGameHistory")
-    public ResponseEntity<List<Match>> getAllGameStatistics(){
+    public ResponseEntity<List<Match>> getGamesHistory(){
         return new ResponseEntity<>(gameHistoryService.getAllGameStatistics(), HttpStatus.OK);
     }
     @GetMapping("/gameHistory/player")
-    public ResponseEntity<List<Participant>> getStatsByPlayer(){
-        return new ResponseEntity<>(gameHistoryService.getListStatsByPlayer(), HttpStatus.OK);
+    public ResponseEntity<List<Participant>> getSummaryPlayerHistory(){
+        return new ResponseEntity<>(gameHistoryService.getSummaryPlayerHistory(), HttpStatus.OK);
     }
 
     @GetMapping("/getInfoGame/{StartTimestamp}")
-    public ResponseEntity<Match> getGameByTamp(@PathVariable long StartTimestamp ){
+    public ResponseEntity<Match> getGameByDate(@PathVariable long StartTimestamp ){
         return new ResponseEntity<>(gameHistoryService.getGameByTamp(StartTimestamp), HttpStatus.OK);
     }
 

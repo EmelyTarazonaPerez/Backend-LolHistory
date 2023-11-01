@@ -1,5 +1,8 @@
 package LolHistory.bussine.externalServices;
 
+import LolHistory.bussine.externalServices.model.Match;
+import lombok.Data;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,7 +15,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-@Configuration
+import java.sql.Timestamp;
+import java.util.Date;
+
 @Service
 @RequiredArgsConstructor
 public abstract class ConsumerRiot {
@@ -78,6 +83,11 @@ public abstract class ConsumerRiot {
             httpEntity,
             typeDto
         );
+    }
+
+    protected Date timeStampToDate(Match n ){
+        Timestamp tms = new Timestamp(n.getInfo().getGameStartTimestamp());
+        return new Date(tms.getTime());
     }
 
 }

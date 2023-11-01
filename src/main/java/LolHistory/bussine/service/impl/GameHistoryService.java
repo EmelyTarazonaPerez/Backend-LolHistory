@@ -15,10 +15,6 @@ import java.util.stream.Collectors;
 public class GameHistoryService {
     @Autowired
     private ConsumerGameHistory consumerGameHistory;
-    @Autowired
-    private ConsumerUser consumerUserService;
-    @Autowired
-    private DataService dataService;
 
     public List<Match> getAllGameStatistics (){
         return consumerGameHistory.getAllStats();
@@ -32,26 +28,10 @@ public class GameHistoryService {
         return consumerGameHistory.getStacsPlayers(StartTimestamp);
     }
 
-    public List<Participant> getListStatsByPlayer(){
-        List<Match> dataHistoryGame = consumerGameHistory.getAllStats();
-        assert dataHistoryGame != null;
-        return dataHistoryGame.stream().map(this::statsPlayer).collect(Collectors.toList());
+    public List<Participant> getSummaryPlayerHistory(){
+        return consumerGameHistory.getSummaryPlayerHistory();
     }
 
-    private Participant statsPlayer (Match n) {
-        List<Participant> participants = n.getInfo().getParticipants();
-        Participant participant = null;
-
-        for (Participant current : participants) {
-            if (current.getPuuid().equals(consumerUserService.getPUUID())) {
-                participant = current;
-                participant.setDate(dataService.timeStampToDate(n));
-                participant.setGameMode(n.getInfo().getGameMode());
-                break;
-            }
-        }
-        return participant;
-    }
 
 
 

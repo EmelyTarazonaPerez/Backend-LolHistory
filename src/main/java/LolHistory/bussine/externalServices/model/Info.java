@@ -8,6 +8,16 @@ public class Info {
     private long gameStartTimestamp;
     private List<Participant> participants;
 
+    public int getKillsTeam() {
+        return killsTeam;
+    }
+
+    public void setKillsTeam(int killsTeam) {
+        this.killsTeam = killsTeam;
+    }
+
+    private int killsTeam;
+
     public List<Participant> getParticipants() {
         return participants;
     }
