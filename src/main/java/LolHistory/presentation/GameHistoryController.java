@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -38,7 +39,11 @@ public class GameHistoryController {
     }
 
     @GetMapping("/idequipo-del-jugador")
-    public ResponseEntity<List<Integer>> listEquipo () {
+    public ResponseEntity<HashMap<Integer,Integer>> listEquipo () {
         return new ResponseEntity<>(gameHistoryService.listEquipo(), HttpStatus.OK);
+    }
+    @GetMapping("/idlistajugadores-del-mismo-equipo")
+    public ResponseEntity<Object>  listJugadoresByEquipo() {
+        return new ResponseEntity<>(gameHistoryService.listJugadoresByEquipo(), HttpStatus.OK);
     }
 }

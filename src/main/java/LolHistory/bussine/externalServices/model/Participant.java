@@ -22,14 +22,14 @@ public class Participant {
     private Date date;
     private String gameMode;
     private String pictureChamp;
-    private int killTotal;
+    private int gameId;
 
-    public int getKillTotal() {
-        return killTotal;
+    public int getGameId() {
+        return gameId;
     }
 
-    public void setKillTotal(int killTotal) {
-        this.killTotal = killTotal;
+    public void setGameId(int killTotal) {
+        this.gameId = killTotal;
     }
 
     public String getPictureChamp() { return pictureChamp; }

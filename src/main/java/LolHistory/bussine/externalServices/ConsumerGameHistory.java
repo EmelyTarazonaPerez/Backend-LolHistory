@@ -1,5 +1,6 @@
 package LolHistory.bussine.externalServices;
 
+import LolHistory.bussine.externalServices.model.Info;
 import LolHistory.bussine.externalServices.model.Match;
 import LolHistory.bussine.externalServices.model.Participant;
 import LolHistory.bussine.externalServices.model.SummaryDamage;
@@ -85,6 +86,7 @@ public class ConsumerGameHistory extends ConsumerRiot {
                 participant.setPictureChamp("ihttp://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/" +current.getChampionName()+ ".png");
                 participant.setDate(super.timeStampToDate(n));
                 participant.setGameMode(n.getInfo().getGameMode());
+                participant.setGameId(n.getInfo().getGameId());
                 break;
             }
         }
@@ -104,18 +106,29 @@ public class ConsumerGameHistory extends ConsumerRiot {
         return false;
     }
 
-    public List<Integer> listEquipo () {
+    public HashMap<Integer,Integer> listEquipo () {
 
         List<Participant> stactsPlayer = getSummaryPlayerHistory();
-        List<Integer> equipos =  new ArrayList<>();
-
+        HashMap<Integer, Integer> idTeamByIdGame = new HashMap<>();
         for (Participant current: stactsPlayer ) {
-            equipos.add(current.getTeamId());
+            idTeamByIdGame.put(current.getGameId(), current.getTeamId());
         }
-
-        return equipos;
+        return idTeamByIdGame;
 
     }
 
+    public Object[] ListJugadoresByEquipo(Match n){
+        HashMap<Integer,Integer> idEquipos = listEquipo();
+        int value = idEquipos.get(n.getInfo().getGameId());
+        List<Participant> participants = n.getInfo().getParticipants();
+        return participants.stream().filter(i -> i.getTeamId() == value).toArray();
+
+    }
+
+    public Object map (){
+        List<Match> dataHistoryGame = getAllStats();
+        assert dataHistoryGame != null;
+        return dataHistoryGame.stream().map(this::ListJugadoresByEquipo).collect(Collectors.toList());
+    }
 
 }
