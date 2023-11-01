@@ -1,10 +1,8 @@
 package LolHistory.bussine.externalServices.model;
 
 import lombok.Data;
-import org.apache.el.stream.Stream;
 
 import java.util.Date;
-import java.util.List;
 
 @Data
 public class Participant {

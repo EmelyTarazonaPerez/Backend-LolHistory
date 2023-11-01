@@ -1,6 +1,5 @@
 package LolHistory.bussine.externalServices;
 
-import LolHistory.bussine.externalServices.model.Info;
 import LolHistory.bussine.externalServices.model.Match;
 import LolHistory.bussine.externalServices.model.Participant;
 import LolHistory.bussine.externalServices.model.SummaryDamage;
@@ -93,18 +92,6 @@ public class ConsumerGameHistory extends ConsumerRiot {
         return participant;
     }
 
-    private boolean suma(List<Match> n) {
-        n.stream().map(x -> {
-            List<Participant> participant = x.getInfo().getParticipants();
-            int suma = 0;
-            for (Participant current : participant){
-                    suma =+ current.getKills();
-                System.out.println(suma);
-                }
-            return suma;
-        }).collect(Collectors.toList());;
-        return false;
-    }
 
     public HashMap<Integer,Integer> listEquipo () {
 
@@ -117,18 +104,41 @@ public class ConsumerGameHistory extends ConsumerRiot {
 
     }
 
-    public Object[] ListJugadoresByEquipo(Match n){
+    public List<Participant> ListJugadoresByEquipo(Match n){
         HashMap<Integer,Integer> idEquipos = listEquipo();
         int value = idEquipos.get(n.getInfo().getGameId());
         List<Participant> participants = n.getInfo().getParticipants();
-        return participants.stream().filter(i -> i.getTeamId() == value).toArray();
+        return participants.stream().filter(i -> i.getTeamId() == value).collect(Collectors.toList());
+
+
+
 
     }
 
-    public Object map (){
+    public List<List<Participant>> recorrerArray (){
         List<Match> dataHistoryGame = getAllStats();
         assert dataHistoryGame != null;
         return dataHistoryGame.stream().map(this::ListJugadoresByEquipo).collect(Collectors.toList());
     }
+
+    /*
+    public List<Participant[]> suma() {
+       List<Participant[]>  n = recorrerArray();
+       return n.stream().map(this::sumaX).collect(Collectors.toList());
+    }
+
+    private Participant[] sumaX (Participant[] n){
+        for (Participant current: n ) {
+
+            Arrays.stream(n).map(i -> {
+                int suma = 0;
+                suma =+ i.getKills();
+                System.out.println(suma);
+                return suma;
+            }).collect(Collectors.toList());
+        }
+        return n;
+    }
+    */
 
 }

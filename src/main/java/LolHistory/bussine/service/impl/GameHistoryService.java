@@ -38,10 +38,14 @@ public class GameHistoryService {
         return consumerGameHistory.listEquipo();
     }
 
-    public Object listJugadoresByEquipo() {
-        return consumerGameHistory.map();
+    public List<List<Participant>>  listJugadoresByEquipo() {
+        return consumerGameHistory.recorrerArray();
+    }
+/*
+    public List<Participant[]> suma() {
+        return consumerGameHistory.suma();
     }
 
-
+*/
 
 }
