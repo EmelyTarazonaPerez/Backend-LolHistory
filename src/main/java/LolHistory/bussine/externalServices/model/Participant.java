@@ -1,10 +1,8 @@
 package LolHistory.bussine.externalServices.model;
 
 import lombok.Data;
-import org.apache.el.stream.Stream;
 
 import java.util.Date;
-import java.util.List;
 
 @Data
 public class Participant {
@@ -21,6 +19,25 @@ public class Participant {
     private boolean win;
     private Date date;
     private String gameMode;
+    private String pictureChamp;
+    private int gameId;
+    private int killTotal;
+
+    public int getKillTotal() {
+        return killTotal;
+    }
+    public void setKillTotal(int killTotal) {
+        this.killTotal = killTotal;
+    }
+    public int getGameId() {
+        return gameId;
+    }
+    public void setGameId(int killTotal) {
+        this.gameId = killTotal;
+    }
+
+    public String getPictureChamp() { return pictureChamp; }
+    public void setPictureChamp(String pictureChamp) { this.pictureChamp = pictureChamp; }
     public Date getDate() {
         return date;
     }

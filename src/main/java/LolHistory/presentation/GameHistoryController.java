@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -19,17 +20,16 @@ public class GameHistoryController {
     @Autowired
     GameHistoryService gameHistoryService;
     @GetMapping("/moreInfoGameHistory")
-    public ResponseEntity<List<Match>> getAllGameStatistics(){
+    public ResponseEntity<List<Match>> getGamesHistory(){
         return new ResponseEntity<>(gameHistoryService.getAllGameStatistics(), HttpStatus.OK);
     }
-
     @GetMapping("/gameHistory/player")
-    public ResponseEntity<List<Participant>> getStatsByPlayer(){
-        return new ResponseEntity<>(gameHistoryService.getListStatsByPlayer(), HttpStatus.OK);
+    public ResponseEntity<List<Participant>> getSummaryPlayerHistory(){
+        return new ResponseEntity<>(gameHistoryService.getSummaryPlayerHistory(), HttpStatus.OK);
     }
 
     @GetMapping("/getInfoGame/{StartTimestamp}")
-    public ResponseEntity<Match> getGameByTamp(@PathVariable long StartTimestamp ){
+    public ResponseEntity<Match> getGameByDate(@PathVariable long StartTimestamp ){
         return new ResponseEntity<>(gameHistoryService.getGameByTamp(StartTimestamp), HttpStatus.OK);
     }
 
@@ -37,4 +37,22 @@ public class GameHistoryController {
     public ResponseEntity<List<SummaryDamage>> getSummaryPlayers (@PathVariable long StartTimestamp ){
         return new ResponseEntity<>(gameHistoryService.getSummaryPlayers(StartTimestamp), HttpStatus.OK);
     }
+
+    @GetMapping("/idequipo-del-jugador")
+    public ResponseEntity<HashMap<Integer,Integer>> listEquipo () {
+        return new ResponseEntity<>(gameHistoryService.listEquipo(), HttpStatus.OK);
+    }
+    @GetMapping("/idlistajugadores-del-mismo-equipo")
+    public ResponseEntity<List<Match>>  listJugadoresByEquipo() {
+        return new ResponseEntity<>(gameHistoryService.listJugadoresByEquipo(), HttpStatus.OK);
+    }
+
+/*
+    @GetMapping("/suma")
+    public ResponseEntity <HashMap<Integer, Integer>>  suma() {
+        return new ResponseEntity<>(gameHistoryService.suma(), HttpStatus.OK);
+    }
+
+
+ */
 }

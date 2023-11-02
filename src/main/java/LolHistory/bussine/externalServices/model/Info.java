@@ -4,9 +4,29 @@ import java.util.List;
 
 public class Info {
     private long gameEndTimestamp;
+
+    private int gameId;
     private String gameMode;
     private long gameStartTimestamp;
     private List<Participant> participants;
+
+    public int getGameId() {
+        return gameId;
+    }
+
+    public void setGameId(int gameId) {
+        this.gameId = gameId;
+    }
+
+    public int getKillsTeam() {
+        return killsTeam;
+    }
+
+    public void setKillsTeam(int killsTeam) {
+        this.killsTeam = killsTeam;
+    }
+
+    private int killsTeam;
 
     public List<Participant> getParticipants() {
         return participants;

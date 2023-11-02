@@ -1,24 +1,19 @@
 package LolHistory.bussine.service.impl;
 
 import LolHistory.bussine.externalServices.ConsumerGameHistory;
-import LolHistory.bussine.externalServices.ConsumerUser;
 import LolHistory.bussine.externalServices.model.Match;
 import LolHistory.bussine.externalServices.model.Participant;
 import LolHistory.bussine.externalServices.model.SummaryDamage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class GameHistoryService {
     @Autowired
     private ConsumerGameHistory consumerGameHistory;
-    @Autowired
-    private ConsumerUser consumerUserService;
-    @Autowired
-    private DataService dataService;
 
     public List<Match> getAllGameStatistics (){
         return consumerGameHistory.getAllStats();
@@ -32,26 +27,24 @@ public class GameHistoryService {
         return consumerGameHistory.getStacsPlayers(StartTimestamp);
     }
 
-    public List<Participant> getListStatsByPlayer(){
-        List<Match> dataHistoryGame = consumerGameHistory.getAllStats();
-        assert dataHistoryGame != null;
-        return dataHistoryGame.stream().map(this::statsPlayer).collect(Collectors.toList());
+    public List<Participant> getSummaryPlayerHistory(){
+        return consumerGameHistory.getSummaryPlayerHistory();
     }
 
-    private Participant statsPlayer (Match n) {
-        List<Participant> participants = n.getInfo().getParticipants();
-        Participant participant = null;
-
-        for (Participant current : participants) {
-            if (current.getPuuid().equals(consumerUserService.getPUUID())) {
-                participant = current;
-                participant.setDate(dataService.timeStampToDate(n));
-                participant.setGameMode(n.getInfo().getGameMode());
-                break;
-            }
-        }
-        return participant;
+    public HashMap<Integer,Integer> listEquipo() {
+        return consumerGameHistory.listEquipo();
     }
+
+    public List<Match>  listJugadoresByEquipo() {
+        return consumerGameHistory.recorrerArray();
+    }
+
+    /*
+    public HashMap<Integer, Integer> suma() {
+        return consumerGameHistory.suma();
+    }
+
+     */
 
 
 
