@@ -21,11 +21,17 @@ public class Participant {
     private String gameMode;
     private String pictureChamp;
     private int gameId;
+    private int killTotal;
 
+    public int getKillTotal() {
+        return killTotal;
+    }
+    public void setKillTotal(int killTotal) {
+        this.killTotal = killTotal;
+    }
     public int getGameId() {
         return gameId;
     }
-
     public void setGameId(int killTotal) {
         this.gameId = killTotal;
     }

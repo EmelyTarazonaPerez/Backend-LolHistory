@@ -43,14 +43,16 @@ public class GameHistoryController {
         return new ResponseEntity<>(gameHistoryService.listEquipo(), HttpStatus.OK);
     }
     @GetMapping("/idlistajugadores-del-mismo-equipo")
-    public ResponseEntity<List<List<Participant>> >  listJugadoresByEquipo() {
+    public ResponseEntity<List<Match>>  listJugadoresByEquipo() {
         return new ResponseEntity<>(gameHistoryService.listJugadoresByEquipo(), HttpStatus.OK);
     }
 
-
+/*
     @GetMapping("/suma")
-    public ResponseEntity<List<Integer>>  suma() {
+    public ResponseEntity <HashMap<Integer, Integer>>  suma() {
         return new ResponseEntity<>(gameHistoryService.suma(), HttpStatus.OK);
     }
 
+
+ */
 }

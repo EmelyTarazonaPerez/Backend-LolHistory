@@ -1,17 +1,14 @@
 package LolHistory.bussine.service.impl;
 
 import LolHistory.bussine.externalServices.ConsumerGameHistory;
-import LolHistory.bussine.externalServices.ConsumerUser;
 import LolHistory.bussine.externalServices.model.Match;
 import LolHistory.bussine.externalServices.model.Participant;
 import LolHistory.bussine.externalServices.model.SummaryDamage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class GameHistoryService {
@@ -38,13 +35,16 @@ public class GameHistoryService {
         return consumerGameHistory.listEquipo();
     }
 
-    public List<List<Participant>>  listJugadoresByEquipo() {
+    public List<Match>  listJugadoresByEquipo() {
         return consumerGameHistory.recorrerArray();
     }
 
-    public List<Integer> suma() {
+    /*
+    public HashMap<Integer, Integer> suma() {
         return consumerGameHistory.suma();
     }
+
+     */
 
 
 

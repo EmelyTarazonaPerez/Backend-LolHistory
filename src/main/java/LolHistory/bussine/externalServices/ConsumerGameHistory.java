@@ -98,6 +98,7 @@ public class ConsumerGameHistory extends ConsumerRiot {
         HashMap<Integer, Integer> idTeamByIdGame = new HashMap<>();
         for (Participant current: stactsPlayer ) {
             idTeamByIdGame.put(current.getGameId(), current.getTeamId());
+
         }
         return idTeamByIdGame;
 
@@ -110,16 +111,33 @@ public class ConsumerGameHistory extends ConsumerRiot {
         return participants.stream().filter(i -> i.getTeamId() == value).collect(Collectors.toList());
     }
 
-    public List<List<Participant>> recorrerArray (){
-        List<Match> dataHistoryGame = getAllStats();
+    public List<Match> recorrerArray (){
+        List<Match> dataHistoryGame =  getAllStats();
         assert dataHistoryGame != null;
-        return dataHistoryGame.stream().map(this::ListJugadoresByEquipo).collect(Collectors.toList());
+        List<List<Participant>> equipo =  dataHistoryGame.stream().map(this::ListJugadoresByEquipo).collect(Collectors.toList());
+        for ( List<Participant> jugador : equipo ) {
+            for ( Match juego : dataHistoryGame ) {
+                juego.getInfo().setParticipants(jugador);
+            }
+        }
+        return  dataHistoryGame;
     }
 
 
-    public List<Integer> suma() {
+  /*  public HashMap<Integer, Integer> suma() {
        List<List<Participant>>  n = recorrerArray();
-       return n.stream().map(this::sumaX).collect(Collectors.toList());
+       List<Integer> killsTotal = n.stream().map(this::sumaX).collect(Collectors.toList());
+
+       List<Match> partidas = getAllStats();
+       HashMap<Integer, Integer> killsTotalByIdGame = new HashMap<>();
+
+       int index = 0;
+        for (Match current: partidas) {
+                killsTotalByIdGame.put(current.getInfo().getGameId(), killsTotal.get(index));
+                index++;
+        }
+        return killsTotalByIdGame;
+
     }
 
     private int sumaX (List<Participant> n){
@@ -131,5 +149,5 @@ public class ConsumerGameHistory extends ConsumerRiot {
         return suma;
     }
 
-
+*/
 }
