@@ -41,11 +41,11 @@ public class GameHistoryService {
     public List<List<Participant>>  listJugadoresByEquipo() {
         return consumerGameHistory.recorrerArray();
     }
-/*
-    public List<Participant[]> suma() {
+
+    public List<Integer> suma() {
         return consumerGameHistory.suma();
     }
 
-*/
+
 
 }

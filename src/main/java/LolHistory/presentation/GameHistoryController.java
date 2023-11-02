@@ -47,11 +47,10 @@ public class GameHistoryController {
         return new ResponseEntity<>(gameHistoryService.listJugadoresByEquipo(), HttpStatus.OK);
     }
 
-    /*
+
     @GetMapping("/suma")
-    public ResponseEntity<List<Participant[]>>  suma() {
+    public ResponseEntity<List<Integer>>  suma() {
         return new ResponseEntity<>(gameHistoryService.suma(), HttpStatus.OK);
     }
 
-     */
 }

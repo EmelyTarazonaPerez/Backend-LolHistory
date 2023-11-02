@@ -94,7 +94,6 @@ public class ConsumerGameHistory extends ConsumerRiot {
 
 
     public HashMap<Integer,Integer> listEquipo () {
-
         List<Participant> stactsPlayer = getSummaryPlayerHistory();
         HashMap<Integer, Integer> idTeamByIdGame = new HashMap<>();
         for (Participant current: stactsPlayer ) {
@@ -109,10 +108,6 @@ public class ConsumerGameHistory extends ConsumerRiot {
         int value = idEquipos.get(n.getInfo().getGameId());
         List<Participant> participants = n.getInfo().getParticipants();
         return participants.stream().filter(i -> i.getTeamId() == value).collect(Collectors.toList());
-
-
-
-
     }
 
     public List<List<Participant>> recorrerArray (){
@@ -121,24 +116,20 @@ public class ConsumerGameHistory extends ConsumerRiot {
         return dataHistoryGame.stream().map(this::ListJugadoresByEquipo).collect(Collectors.toList());
     }
 
-    /*
-    public List<Participant[]> suma() {
-       List<Participant[]>  n = recorrerArray();
+
+    public List<Integer> suma() {
+       List<List<Participant>>  n = recorrerArray();
        return n.stream().map(this::sumaX).collect(Collectors.toList());
     }
 
-    private Participant[] sumaX (Participant[] n){
+    private int sumaX (List<Participant> n){
+        int suma = 0;
         for (Participant current: n ) {
-
-            Arrays.stream(n).map(i -> {
-                int suma = 0;
-                suma =+ i.getKills();
-                System.out.println(suma);
-                return suma;
-            }).collect(Collectors.toList());
+            suma = suma + current.getKills();
         }
-        return n;
+        System.out.println(suma);
+        return suma;
     }
-    */
+
 
 }
