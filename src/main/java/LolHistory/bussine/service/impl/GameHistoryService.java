@@ -27,16 +27,12 @@ public class GameHistoryService {
         return consumerGameHistory.getStacsPlayers(StartTimestamp);
     }
 
-    public List<Participant> getSummaryPlayerHistory(){
-        return consumerGameHistory.getSummaryPlayerHistory();
+    public List<Match> listJugadoresByEquipo() {
+        return consumerGameHistory.historyGame();
     }
 
-    public HashMap<Integer,Integer> listEquipo() {
-        return consumerGameHistory.listEquipo();
-    }
-
-    public List<Match>  listJugadoresByEquipo() {
-        return consumerGameHistory.recorrerArray();
+    public List<Match> lastMatches() {
+        return consumerGameHistory.getAllStats();
     }
 
     /*

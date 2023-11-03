@@ -23,10 +23,6 @@ public class GameHistoryController {
     public ResponseEntity<List<Match>> getGamesHistory(){
         return new ResponseEntity<>(gameHistoryService.getAllGameStatistics(), HttpStatus.OK);
     }
-    @GetMapping("/gameHistory/player")
-    public ResponseEntity<List<Participant>> getSummaryPlayerHistory(){
-        return new ResponseEntity<>(gameHistoryService.getSummaryPlayerHistory(), HttpStatus.OK);
-    }
 
     @GetMapping("/getInfoGame/{StartTimestamp}")
     public ResponseEntity<Match> getGameByDate(@PathVariable long StartTimestamp ){
@@ -38,15 +34,15 @@ public class GameHistoryController {
         return new ResponseEntity<>(gameHistoryService.getSummaryPlayers(StartTimestamp), HttpStatus.OK);
     }
 
-    @GetMapping("/idequipo-del-jugador")
-    public ResponseEntity<HashMap<Integer,Integer>> listEquipo () {
-        return new ResponseEntity<>(gameHistoryService.listEquipo(), HttpStatus.OK);
-    }
     @GetMapping("/idlistajugadores-del-mismo-equipo")
-    public ResponseEntity<List<Match>>  listJugadoresByEquipo() {
+    public ResponseEntity<List<Match>> listJugadoresByEquipo() {
         return new ResponseEntity<>(gameHistoryService.listJugadoresByEquipo(), HttpStatus.OK);
     }
 
+    @GetMapping("/last-matches")
+    public ResponseEntity<List<Match>> getLastMatches() {
+        return new ResponseEntity<>(gameHistoryService.lastMatches(), HttpStatus.OK);
+    }
 /*
     @GetMapping("/suma")
     public ResponseEntity <HashMap<Integer, Integer>>  suma() {
