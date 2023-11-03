@@ -18,6 +18,15 @@ public class Participant {
     private int totalDamageDealtToChampions;
     private boolean win;
     private int gameId;
+    private double percentP;
+
+    public double getPercentP() {
+        return percentP;
+    }
+
+    public void setPercentP(double percentP) {
+        this.percentP = kills / percentP * 100;
+    }
 
     public int getGameId() {
         return gameId;

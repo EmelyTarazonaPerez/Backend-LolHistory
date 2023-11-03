@@ -12,7 +12,13 @@ public class LeagueEntry {
     private int leaguePoints;
     private int wins;
     private int losses;
-
+    private Double WinningP;
+    public Double getWinningP() {
+        return WinningP;
+    }
+    public void setWinningP(Double winningP) {
+        WinningP = winningP;
+    }
     public String getLeagueId() {
         return leagueId;
     }

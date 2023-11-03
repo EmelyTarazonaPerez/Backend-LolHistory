@@ -22,7 +22,6 @@ public class ConsumerGameHistory extends ConsumerRiot {
     @Autowired
     private Data data;
     private String[] getMatchesByPlayer(){
-        System.out.println("sadnjasd " + consumerUser.getPUUID());
         ResponseEntity<String[]> response = sendRiotRequest(
                 "https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/"+ consumerUser.getPUUID() +"/ids?start=0&count=5",
                 HttpMethod.GET,
@@ -30,7 +29,7 @@ public class ConsumerGameHistory extends ConsumerRiot {
         return response.getBody();
     }
 
-    private List<Match> loopResponse ( ) {
+    private List<Match> getLastGames ( ) {
         String[] list = getMatchesByPlayer();
         List<Match> returnList = new ArrayList<>();
         for(String string : list) {
@@ -43,12 +42,8 @@ public class ConsumerGameHistory extends ConsumerRiot {
         return returnList;
     }
 
-    public List<Match> getAllStats(){;
-        return loopResponse();
-    }
-
     public Match getGameByTamp(long StartTimestamp){
-        List<Match> listGames = loopResponse();
+        List<Match> listGames = getLastGames();
         Match checkGame = null;
         for(Match current: listGames) {
             long Timestamp = current.getInfo().getGameStartTimestamp();
@@ -73,28 +68,30 @@ public class ConsumerGameHistory extends ConsumerRiot {
     }
 
     public List<Match> historyGame() {
-        List<Match> dataHistoryGame = getAllStats(); // 5 ultimas partidas getLastMatches
-        List<List<Participant>> team =  dataHistoryGame.stream()
+        List<Match> lastGames = getLastGames();
+        List<List<Participant>> team =  lastGames.stream()
                 .map((data) -> {
-                    return participantsSameTeam(data, dataHistoryGame);
+                    return participantsSameTeam(data, lastGames);
                 })
                 .collect(Collectors.toList());
 
         int index = 0;
-        for (Match match : dataHistoryGame) {
+        for (Match match : lastGames) {
             match.getInfo().setParticipants(team.get(index));
             match.getInfo().setKillsTeam(data.addKillTeam(team.get(index)));
-            match.getInfo().setParticipants(team.get(index));
             index++;
         }
-        return  dataHistoryGame;
+        return  lastGames;
     }
 
-    public List<Participant> participantsSameTeam (Match n, List<Match> dataHistoryGame){
-        HashMap<Integer,Integer> idTeam = data.getIdGameAndIdTeam(dataHistoryGame);
-        int value = idTeam.get(n.getInfo().getGameId());
-        return n.getInfo().getParticipants().stream()
+    public List<Participant> participantsSameTeam (Match match, List<Match> matches) {
+        HashMap<Integer, Integer> idTeam = data.getIdGameAndIdTeam(matches);
+        int value = idTeam.get(match.getInfo().getGameId());
+        return match.getInfo().getParticipants().stream()
                 .filter(i -> i.getTeamId() == value)
                 .collect(Collectors.toList());
+
+
     }
+
 }

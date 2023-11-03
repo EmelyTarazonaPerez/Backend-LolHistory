@@ -15,10 +15,6 @@ public class GameHistoryService {
     @Autowired
     private ConsumerGameHistory consumerGameHistory;
 
-    public List<Match> getAllGameStatistics (){
-        return consumerGameHistory.getAllStats();
-    }
-
     public Match getGameByTamp (long StartTimestamp){
         return consumerGameHistory.getGameByTamp(StartTimestamp);
     }
@@ -26,22 +22,15 @@ public class GameHistoryService {
     public List<SummaryDamage> getSummaryPlayers (long StartTimestamp) {
         return consumerGameHistory.getStacsPlayers(StartTimestamp);
     }
-
-    public List<Match> listJugadoresByEquipo() {
-        return consumerGameHistory.historyGame();
+    public List<Match> getLastGames () {
+        List<Match> lastMaths = consumerGameHistory.historyGame();
+        for ( Match match :lastMaths ) {
+            List<Participant> participants = match.getInfo().getParticipants();
+            for ( Participant participant : participants ) {
+                double totalKills = match.getInfo().getKillsTeam();
+                participant.setPercentP(totalKills);
+            }
+        }
+        return lastMaths;
     }
-
-    public List<Match> lastMatches() {
-        return consumerGameHistory.getAllStats();
-    }
-
-    /*
-    public HashMap<Integer, Integer> suma() {
-        return consumerGameHistory.suma();
-    }
-
-     */
-
-
-
 }

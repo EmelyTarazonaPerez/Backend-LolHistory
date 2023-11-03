@@ -18,7 +18,13 @@ public class UserService {
         return consumerUserService.getAccount(name);
     }
     public LeagueEntry[] getSummonerLeague (String name){
-        return consumerLeague.getSummaryLeague(name);
+        LeagueEntry[] dataRanked =  consumerLeague.getSummaryLeague(name);
+        for (LeagueEntry current: dataRanked ) {
+            double addGames = (double) current.getWins() + current.getLosses();
+            double winningP = current.getWins()/ addGames;
+            current.setWinningP(winningP * 100);
+        }
+        return dataRanked;
     }
 
 }
