@@ -46,4 +46,13 @@ public class Data {
         }
         return suma;
     }
+
+    public int addKillTeam (Match n){
+        List<Participant> participants = n.getInfo().getParticipants();
+        int suma = 0;
+        for (Participant current: participants ) {
+            suma = suma + current.getKills();
+        }
+        return suma;
+    }
 }
