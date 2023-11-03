@@ -17,42 +17,14 @@ public class Participant {
     private int teamId;
     private int totalDamageDealtToChampions;
     private boolean win;
-    private Date date;
-    private String gameMode;
-    private String pictureChamp;
     private int gameId;
-    private int killTotal;
 
-    public int getKillTotal() {
-        return killTotal;
-    }
-    public void setKillTotal(int killTotal) {
-        this.killTotal = killTotal;
-    }
     public int getGameId() {
         return gameId;
     }
     public void setGameId(int killTotal) {
         this.gameId = killTotal;
     }
-
-    public String getPictureChamp() { return pictureChamp; }
-    public void setPictureChamp(String pictureChamp) { this.pictureChamp = pictureChamp; }
-    public Date getDate() {
-        return date;
-    }
-    public void setDate(Date date) {
-        this.date = date;
-    }
-    public String getGameMode() {
-        return gameMode;
-    }
-
-    public void setGameMode(String gameMode) {
-        this.gameMode = gameMode;
-    }
-
-
     public int getAssists() {
         return assists;
     }
