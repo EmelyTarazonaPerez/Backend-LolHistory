@@ -19,13 +19,19 @@ public class Participant {
     private boolean win;
     private int gameId;
     private double percentP;
-
+    private String iconoChampion;
+    public String getIconoChampion() {
+        return iconoChampion;
+    }
+    public void setIconoChampion(String iconoChampion) {
+        this.iconoChampion = iconoChampion;
+    }
     public double getPercentP() {
         return percentP;
     }
 
     public void setPercentP(double percentP) {
-        this.percentP = kills / percentP * 100;
+        this.percentP = (kills + assists) / percentP;
     }
 
     public int getGameId() {

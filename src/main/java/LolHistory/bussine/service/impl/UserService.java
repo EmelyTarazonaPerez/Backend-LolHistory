@@ -22,7 +22,8 @@ public class UserService {
         for (LeagueEntry current: dataRanked ) {
             double addGames = (double) current.getWins() + current.getLosses();
             double winningP = current.getWins()/ addGames;
-            current.setWinningP(winningP * 100);
+            current.setWinningP(winningP);
+            current.setTier(current.getTier().toLowerCase());
         }
         return dataRanked;
     }
