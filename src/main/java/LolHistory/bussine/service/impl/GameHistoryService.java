@@ -30,6 +30,7 @@ public class GameHistoryService {
                 double totalKills = match.getInfo().getKillsTeam();
                 participant.setPercentP(totalKills);
             }
+            match.getInfo().setParticipants(consumerGameHistory.returnPlayer(match));
         }
         return lastMaths;
     }

@@ -77,7 +77,6 @@ public class ConsumerGameHistory extends ConsumerRiot {
 
         int index = 0;
         for (Match match : lastGames) {
-            match.getInfo().setParticipants(team.get(index));
             match.getInfo().setKillsTeam(data.addKillTeam(team.get(index)));
             index++;
         }
@@ -92,6 +91,22 @@ public class ConsumerGameHistory extends ConsumerRiot {
                 .collect(Collectors.toList());
 
 
+    }
+
+    public  List<Participant> returnPlayer (Match match) {
+        List<Participant> playerMatch = match.getInfo().getParticipants().stream()
+                .filter(i -> Objects.equals(i.getPuuid(), consumerUser.getPUUID()))
+                .collect(Collectors.toList());
+
+        for (Participant participant : playerMatch) {
+            participant.setIconoChampion("http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/" + participant.getChampionName() + ".png");
+        }
+
+        return playerMatch;
+    }
+
+    public boolean getPlayer(Participant participant){
+        return Objects.equals(participant.getPuuid(), consumerUser.getPUUID());
     }
 
 }

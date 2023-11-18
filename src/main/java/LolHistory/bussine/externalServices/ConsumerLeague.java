@@ -12,13 +12,14 @@ public class ConsumerLeague extends ConsumerRiot {
     ConsumerUser consumerUser;
     public LeagueEntry[] getSummaryLeague (String name) {
         String id = consumerUser.getAccount(name).getId();
-        System.out.println( consumerUser.getPUUID() + " este es el metodo get para retornar PIUD");
         return sendRiotRequest(
                 "https://la1.api.riotgames.com/lol/league/v4/entries/by-summoner/" + id,
                 HttpMethod.GET,
                 LeagueEntry[].class
                 ).getBody();
     }
+
+
 
 
 
