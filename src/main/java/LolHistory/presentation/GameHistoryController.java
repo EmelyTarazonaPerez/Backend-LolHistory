@@ -1,7 +1,6 @@
 package LolHistory.presentation;
 
-import LolHistory.bussine.externalServices.model.Match;
-import LolHistory.bussine.externalServices.model.Participant;
+import LolHistory.bussine.externalServices.model.match.Match;
 import LolHistory.bussine.externalServices.model.SummaryDamage;
 import LolHistory.bussine.service.impl.GameHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
 import java.util.List;
 
 @RestController

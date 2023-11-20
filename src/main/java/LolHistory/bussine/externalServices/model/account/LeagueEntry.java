@@ -1,4 +1,4 @@
-package LolHistory.bussine.externalServices.model;
+package LolHistory.bussine.externalServices.model.account;
 
 import lombok.Data;
 

@@ -1,6 +1,6 @@
 package LolHistory.bussine.service.dto;
 
-import LolHistory.bussine.externalServices.model.Participant;
+import LolHistory.bussine.externalServices.model.match.Participant;
 import lombok.Getter;
 
 import java.util.List;

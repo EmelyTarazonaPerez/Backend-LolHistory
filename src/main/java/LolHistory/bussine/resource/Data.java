@@ -1,9 +1,8 @@
 package LolHistory.bussine.resource;
 
-import LolHistory.bussine.externalServices.ConsumerGameHistory;
 import LolHistory.bussine.externalServices.ConsumerUser;
-import LolHistory.bussine.externalServices.model.Match;
-import LolHistory.bussine.externalServices.model.Participant;
+import LolHistory.bussine.externalServices.model.match.Match;
+import LolHistory.bussine.externalServices.model.match.Participant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

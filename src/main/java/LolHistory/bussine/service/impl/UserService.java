@@ -1,8 +1,8 @@
 package LolHistory.bussine.service.impl;
 
 import LolHistory.bussine.externalServices.ConsumerLeague;
-import LolHistory.bussine.externalServices.model.LeagueEntry;
-import LolHistory.bussine.externalServices.model.PlayerAccount;
+import LolHistory.bussine.externalServices.model.account.LeagueEntry;
+import LolHistory.bussine.externalServices.model.account.PlayerAccount;
 import LolHistory.bussine.externalServices.ConsumerUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
