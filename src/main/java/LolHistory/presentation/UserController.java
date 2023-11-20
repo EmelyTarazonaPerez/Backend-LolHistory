@@ -1,6 +1,6 @@
 package LolHistory.presentation;
-import LolHistory.bussine.externalServices.model.LeagueEntry;
-import LolHistory.bussine.externalServices.model.PlayerAccount;
+import LolHistory.bussine.externalServices.model.account.LeagueEntry;
+import LolHistory.bussine.externalServices.model.account.PlayerAccount;
 import LolHistory.bussine.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;

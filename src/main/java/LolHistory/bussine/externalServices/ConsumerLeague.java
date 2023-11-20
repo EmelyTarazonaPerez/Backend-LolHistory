@@ -1,6 +1,6 @@
 package LolHistory.bussine.externalServices;
 
-import LolHistory.bussine.externalServices.model.LeagueEntry;
+import LolHistory.bussine.externalServices.model.account.LeagueEntry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;

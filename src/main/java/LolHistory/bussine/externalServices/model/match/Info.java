@@ -1,10 +1,9 @@
-package LolHistory.bussine.externalServices.model;
+package LolHistory.bussine.externalServices.model.match;
 
 import java.util.List;
 
 public class Info {
     private long gameEndTimestamp;
-
     private int gameId;
     private String gameMode;
     private long gameStartTimestamp;

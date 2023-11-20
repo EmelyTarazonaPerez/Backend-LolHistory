@@ -1,10 +1,9 @@
 package LolHistory.bussine.externalServices;
 
-import LolHistory.bussine.externalServices.model.Match;
-import LolHistory.bussine.externalServices.model.Participant;
+import LolHistory.bussine.externalServices.model.match.Match;
+import LolHistory.bussine.externalServices.model.match.Participant;
 import LolHistory.bussine.externalServices.model.SummaryDamage;
 import LolHistory.bussine.resource.Data;
-import jdk.nashorn.internal.objects.annotations.Function;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +28,7 @@ public class ConsumerGameHistory extends ConsumerRiot {
         return response.getBody();
     }
 
-    private List<Match> getLastGames ( ) {
+    public List<Match> getLastGames ( ) {
         String[] list = getMatchesByPlayer();
         List<Match> returnList = new ArrayList<>();
         for(String string : list) {
@@ -67,30 +66,12 @@ public class ConsumerGameHistory extends ConsumerRiot {
         return listSummary;
     }
 
-    public List<Match> historyGame() {
-        List<Match> lastGames = getLastGames();
-        List<List<Participant>> team =  lastGames.stream()
-                .map((data) -> {
-                    return participantsSameTeam(data, lastGames);
-                })
-                .collect(Collectors.toList());
-
-        int index = 0;
-        for (Match match : lastGames) {
-            match.getInfo().setKillsTeam(data.addKillTeam(team.get(index)));
-            index++;
-        }
-        return  lastGames;
-    }
-
     public List<Participant> participantsSameTeam (Match match, List<Match> matches) {
         HashMap<Integer, Integer> idTeam = data.getIdGameAndIdTeam(matches);
         int value = idTeam.get(match.getInfo().getGameId());
         return match.getInfo().getParticipants().stream()
                 .filter(i -> i.getTeamId() == value)
                 .collect(Collectors.toList());
-
-
     }
 
     public  List<Participant> returnPlayer (Match match) {
@@ -100,13 +81,11 @@ public class ConsumerGameHistory extends ConsumerRiot {
 
         for (Participant participant : playerMatch) {
             participant.setIconoChampion("http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/" + participant.getChampionName() + ".png");
+            participant.iconSummoner1Id = "https://cdn.mobalytics.gg/assets/lol/images/dd/summoner-spells/"+ participant.getSummoner1Id() +".png";
+            participant.iconSummoner2Id = "https://cdn.mobalytics.gg/assets/lol/images/dd/summoner-spells/"+ participant.getSummoner2Id() +".png";
         }
 
         return playerMatch;
-    }
-
-    public boolean getPlayer(Participant participant){
-        return Objects.equals(participant.getPuuid(), consumerUser.getPUUID());
     }
 
 }

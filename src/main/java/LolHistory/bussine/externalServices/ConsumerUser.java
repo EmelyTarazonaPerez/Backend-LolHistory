@@ -1,6 +1,6 @@
 package LolHistory.bussine.externalServices;
 
-import LolHistory.bussine.externalServices.model.PlayerAccount;
+import LolHistory.bussine.externalServices.model.account.PlayerAccount;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 
