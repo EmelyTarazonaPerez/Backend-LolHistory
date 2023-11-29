@@ -59,8 +59,9 @@ public class ConsumerGameHistory extends ConsumerRiot {
         List<SummaryDamage> listSummary = new ArrayList<>();
         for(Participant current:  participants) {
             SummaryDamage summaryDamage = new SummaryDamage();
-            summaryDamage.setChampionPng("ihttp://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/"+current.getChampionName()+".png");
+            summaryDamage.setChampionPng("http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/"+current.getChampionName()+".png");
             summaryDamage.setDamage(current.getTotalDamageDealtToChampions());
+            summaryDamage.setTeamId(current.getTeamId());
             listSummary.add(summaryDamage);
         }
         return listSummary;

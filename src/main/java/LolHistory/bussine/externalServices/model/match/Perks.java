@@ -7,11 +7,12 @@ import java.util.List;
 @Data
 public class Perks {
 
-    public List<PerkStyleDto> styles;
-    public List<PerkStyleDto> getStyle() {
+    public Object object;
+    public List<Object> styles;
+    public List<Object> getStyle() {
         return styles;
     }
-    public void setStyle(List<PerkStyleDto> styles) {
+    public void setStyle(List<Object> styles) {
         this.styles = styles;
     }
 }
