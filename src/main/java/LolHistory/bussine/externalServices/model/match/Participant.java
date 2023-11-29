@@ -10,7 +10,7 @@ public class Participant {
     public Challenges challenges;
     private int deaths;
     private int kills;
-    public Perks perks;
+    public Object perks;
     private String puuid;
     private int summoner1Id;
     private int summoner2Id;

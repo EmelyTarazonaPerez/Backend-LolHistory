@@ -7,6 +7,8 @@ import LolHistory.bussine.externalServices.ConsumerUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserService {
     @Autowired
@@ -14,7 +16,7 @@ public class UserService {
     @Autowired
     private ConsumerLeague consumerLeague;
 
-    public PlayerAccount getSummoner(String name) {
+    public Optional<PlayerAccount> getSummoner(String name) {
         return consumerUserService.getAccount(name);
     }
     public LeagueEntry[] getSummonerLeague (String name){

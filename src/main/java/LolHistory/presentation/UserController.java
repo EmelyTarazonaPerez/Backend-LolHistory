@@ -15,7 +15,9 @@ public class UserController {
     private UserService userService;
     @GetMapping("account/{gameName}")
     public ResponseEntity<PlayerAccount> getAccountPlayer (@PathVariable  String gameName){
-        return new ResponseEntity<PlayerAccount>( userService.getSummoner(gameName), HttpStatus.OK);
+            return userService.getSummoner(gameName)
+                    .map(item -> new ResponseEntity<>(item, HttpStatus.OK))
+                    .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
     @GetMapping("account/league/{gameName}")
     public ResponseEntity<LeagueEntry[]> getSummaryLeague (@PathVariable  String gameName){

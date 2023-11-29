@@ -4,14 +4,16 @@ import LolHistory.bussine.externalServices.model.account.PlayerAccount;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ConsumerUser extends ConsumerRiot {
     private String PUUID;
-    public PlayerAccount getAccount (String gameName){
+    public Optional<PlayerAccount> getAccount (String gameName){
         PlayerAccount playerAccount = sentRequestApi(gameName);
         setPUUID(playerAccount.getPuuid());
         playerAccount.setLinkIcono(super.linkIcon + playerAccount.getProfileIconId() + ".png");
-        return playerAccount;
+        return Optional.of(playerAccount);
     }
     public PlayerAccount sentRequestApi (String gameName){
         return super.sendRiotRequest(

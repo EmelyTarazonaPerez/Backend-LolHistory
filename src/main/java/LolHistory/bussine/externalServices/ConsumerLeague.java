@@ -11,7 +11,7 @@ public class ConsumerLeague extends ConsumerRiot {
     @Autowired
     ConsumerUser consumerUser;
     public LeagueEntry[] getSummaryLeague (String name) {
-        String id = consumerUser.getAccount(name).getId();
+        String id = consumerUser.getAccount(name).get().getId();
         return sendRiotRequest(
                 "https://la1.api.riotgames.com/lol/league/v4/entries/by-summoner/" + id,
                 HttpMethod.GET,
