@@ -1,7 +1,7 @@
 ## For this project the Riot API was used.
 A project was created in order to be able to communicate microservices using `restTemplate`.
 
-## Development environment
+## Development environment.
 [![IntelliJ IDEA](https://img.shields.io/badge/intelliJIDEA-black?style=for-the-badge&logo=openjdk)](https://github.com/JulianRivers)
 [![Java](https://img.shields.io/badge/java-black?style=for-the-badge&logo=openjdk)](https://github.com/JulianRivers)
 [![Springboot](https://img.shields.io/badge/springboot-black?style=for-the-badge&logo=springboot)](https://github.com/JulianRivers)
