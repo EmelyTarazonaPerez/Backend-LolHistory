@@ -1,4 +1,4 @@
-## For this project the Riot API was used
+## For this project the Riot API was used.
 A project was created in order to be able to communicate microservices using `restTemplate`
 
 ## Development environment
